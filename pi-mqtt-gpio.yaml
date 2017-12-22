@@ -1,0 +1,54 @@
+mqtt:
+  host: 192.168.1.22
+  port: 1883
+  user: ""
+  password: ""
+  topic_prefix: rpi/garage/
+
+gpio_modules:
+  - name: raspberrypi
+    module: raspberrypi
+
+digital_outputs:
+  - name: garagedoorshop
+    module: raspberrypi
+    pin: 23
+    on_payload: "ON"
+    off_payload: "OFF"
+    initial: high 
+    retain: no
+  
+  - name: garagedoormain
+    module: raspberrypi
+    pin: 24
+    #inverted: no  # This pin may control an open-collector output which is "on" when the output is "low".
+    on_payload: "ON"
+    off_payload: "OFF"
+    initial: high
+    retain: no
+
+digital_inputs:
+  - name: garagedoorshop
+    module: raspberrypi
+    pin: 12
+    on_payload: "closed"
+    off_payload: "open"
+    retain: yes
+    pullup: yes
+    pulldown: no
+  - name: garagedoormain
+    module: raspberrypi
+    pin: 13
+    on_payload: "closed"
+    off_payload: "open"
+    retain: yes
+    pullup: yes
+    pulldown: no
+  - name: servicedoor
+    module: raspberrypi
+    pin: 20
+    on_payload: "closed"
+    off_payload: "open"
+    retain: yes
+    pullup: yes
+    pulldown: no
